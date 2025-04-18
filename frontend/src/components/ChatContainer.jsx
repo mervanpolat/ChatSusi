@@ -14,6 +14,7 @@ const ChatContainer = () => {
     isMessagesLoading,
     selectedUser,
     subscribeToMessages,
+    unsubscribeFromMessages,
   } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
@@ -28,6 +29,16 @@ const ChatContainer = () => {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+
+  // Subscribe to real-time messages when a user is selected
+  useEffect(() => {
+    if (selectedUser?._id) {
+      subscribeToMessages();
+    }
+    return () => {
+      unsubscribeFromMessages();
+    };
+  }, [selectedUser?._id, subscribeToMessages, unsubscribeFromMessages]);
 
   if (!selectedUser) {
     return null;
