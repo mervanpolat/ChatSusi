@@ -1,5 +1,6 @@
 // Import necessary dependencies
 import { useAuthStore } from '../store/useAuthStore';  // Custom hook for authentication state management
+import { useThemeStore } from '../store/useThemeStore';  // Custom hook for theme state management
 import { Link } from 'react-router-dom';  // React Router component for navigation
 import { MessageSquare, Settings, User, LogOut } from 'lucide-react';  // Icon components from Lucide
 
@@ -17,6 +18,8 @@ import { MessageSquare, Settings, User, LogOut } from 'lucide-react';  // Icon c
 const NavBar = () => {
   // Get authentication state and logout function from the auth store
   const { authUser, logout } = useAuthStore();
+  // Get current theme from theme store
+  const { theme } = useThemeStore();
 
   return (
     // Header container with fixed positioning and styling
@@ -37,7 +40,7 @@ const NavBar = () => {
                 <MessageSquare className="w-5 h-5 text-primary" />
               </div>
               {/* App name */}
-              <h1 className="text-lg font-bold">Chatty</h1>
+              <h1 className="text-lg font-bold">ChatSusi</h1>
             </Link>
           </div>
 
@@ -48,7 +51,7 @@ const NavBar = () => {
               to={"/settings"}
               className={`
               btn btn-sm gap-2 transition-colors
-              
+              ${theme === 'byrne' ? 'btn-neutral text-base-100' : ''}
               `}
             >
               <Settings className="w-4 h-4" />
@@ -59,13 +62,25 @@ const NavBar = () => {
             {authUser && (
               <>
                 {/* Profile link - only shown when user is authenticated */}
-                <Link to={"/profile"} className={`btn btn-sm gap-2`}>
+                <Link 
+                  to={"/profile"} 
+                  className={`
+                    btn btn-sm gap-2 transition-colors
+                    ${theme === 'byrne' ? 'btn-neutral text-base-100' : ''}
+                  `}
+                >
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
 
                 {/* Logout button - only shown when user is authenticated */}
-                <button className="flex gap-2 items-center" onClick={logout}>
+                <button 
+                  className={`
+                    btn btn-sm gap-2 transition-colors
+                    ${theme === 'byrne' ? 'btn-accent text-accent-content' : ''}
+                  `} 
+                  onClick={logout}
+                >
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>

@@ -1,16 +1,59 @@
-import daisyui from 'daisyui'
-
-
+import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
-
 export default {
-	content: [
-	'./index.html',
-	'./src/**/*.{js,ts,jsx,tsx}'
-	],
-	theme: {
-	extend: {},
-	},
-	plugins: [daisyui],
-}
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [daisyui],
+  daisyui: {
+    themes: [
+      {
+        byrne: {
+          "primary": "#fac22b",
+          "secondary": "#0e638e",
+          "accent": "#d42a20",
+          "neutral": "#02080b",
+          "base-100": "#fcf3d9",
+          "info": "#0e638e",
+          "success": "#36d399",
+          "warning": "#fbbd23",
+          "error": "#d42a20",
+        },
+      },
+      "light",
+      "dark",
+      "cupcake",
+      "bumblebee",
+      "emerald",
+      "corporate",
+      "synthwave",
+      "retro",
+      "cyberpunk",
+      "valentine",
+      "halloween",
+      "garden",
+      "forest",
+      "aqua",
+      "lofi",
+      "pastel",
+      "fantasy",
+      "wireframe",
+      "black",
+      "luxury",
+      "dracula",
+      "cmyk",
+      "autumn",
+      "business",
+      "acid",
+      "lemonade",
+      "night",
+      "coffee",
+      "winter",
+      "dim",
+      "nord",
+      "sunset",
+    ],
+  },
+};

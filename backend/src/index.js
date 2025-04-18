@@ -2,26 +2,24 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+
 import path from "path";
-import http from "http";
 
 import { connectDB } from "./lib/db.js";
+
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
+import { app, server } from "./lib/socket.js";
 
 dotenv.config();
 
-const app = express();
-const server = http.createServer(app);
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
     origin: "http://localhost:5173",
     credentials: true,
   })
